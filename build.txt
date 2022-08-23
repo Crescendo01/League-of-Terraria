@@ -1,0 +1,3 @@
+displayName = League of Terraria
+author = succgang
+version = 0.1
