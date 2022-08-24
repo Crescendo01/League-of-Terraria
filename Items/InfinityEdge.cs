@@ -10,7 +10,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Infinity Edge"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-			Tooltip.SetDefault("+75% bonus melee and ranged damage\n+20% critical strike chance\nUNIQUE | PERFECTION: Gain 35% bonus melee and ranged damage if you have at least 60% critical strike chance.");
+			Tooltip.SetDefault("+75% bonus melee and ranged damage\n+20% critical strike chance\nUNIQUE - PERFECTION: Gain 35% bonus melee and ranged damage if you have at least 60% critical strike chance.");
 		}
 
 		public override void SetDefaults()
