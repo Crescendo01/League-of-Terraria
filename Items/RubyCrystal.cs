@@ -5,12 +5,12 @@ using Terraria.ModLoader;
 
 namespace LeagueOfTerraria.Items
 {
-	public class NeedlesslyLargeRod : ModItem
+	public class RubyCrystal : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Needlessly Large Rod");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+6% magic and summon damage");
+			DisplayName.SetDefault("Ruby Crystal");
+			Tooltip.SetDefault("Equipable only in the League Inventory\n+15 health");
 		}
 
 		public override void SetDefaults()
@@ -22,7 +22,7 @@ namespace LeagueOfTerraria.Items
 			Item.rare = 5;
 		}
 
-        //Tells the game it is a league item so it can only go in the league inventory
+		//Tells the game it is a league item so it can only go in the league inventory
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
             return modded;
@@ -30,17 +30,16 @@ namespace LeagueOfTerraria.Items
 
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			base.UpdateAccessory(player, hideVisual);
-			player.GetDamage(DamageClass.Magic) += 0.06f;
-            player.GetDamage(DamageClass.Summon) += 0.06f;
+            base.UpdateAccessory(player, hideVisual);
+            player.statLifeMax2 += 15;
         }
 
         public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.DirtBlock, 10);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.Register();
-        }
+			recipe.AddIngredient(ItemID.DirtBlock, 10);
+			recipe.AddTile(TileID.WorkBenches);
+			recipe.Register();
+		}
 	}
 }

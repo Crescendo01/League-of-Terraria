@@ -9,8 +9,8 @@ namespace LeagueOfTerraria.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Blighting Jewel"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-			Tooltip.SetDefault("+20% bonus magic and summon damage\n+9 bonus magic and summon armor penetration");
+			DisplayName.SetDefault("Blighting Jewel");
+			Tooltip.SetDefault("Equipable only in the League Inventory\n+3% magic and summon damage\n+3 magic and summon armor penetration");
 		}
 
 		public override void SetDefaults()
@@ -22,13 +22,19 @@ namespace LeagueOfTerraria.Items
 			Item.rare = 5;
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
+        //Tells the game it is a league item so it can only go in the league inventory
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            return modded;
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			base.UpdateAccessory(player, hideVisual);
-            player.GetDamage(DamageClass.Magic) += 0.13f;
-			player.GetArmorPenetration(DamageClass.Magic) += 9;
-            player.GetDamage(DamageClass.Summon) += 0.13f;
-            player.GetArmorPenetration(DamageClass.Summon) += 9;
+            player.GetDamage(DamageClass.Magic) += 0.03f;
+			player.GetArmorPenetration(DamageClass.Magic) += 3;
+            player.GetDamage(DamageClass.Summon) += 0.03f;
+            player.GetArmorPenetration(DamageClass.Summon) += 3;
         }
 
         public override void AddRecipes()

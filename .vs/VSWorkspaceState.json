@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Buffs",
+    "\\Items",
+    "\\NPCS"
   ],
-  "SelectedNode": "\\Items",
+  "SelectedNode": "\\Items\\InfinityEdge.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -9,13 +9,13 @@ namespace LeagueOfTerraria.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Rage (Black Cleaver)"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-			Description.SetDefault("+18% movement speed");
+			DisplayName.SetDefault("Rage (Black Cleaver)");
+			Description.SetDefault("+5% movement speed");
 		}
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.moveSpeed += 0.18f;
+			player.moveSpeed += 0.05f;
         }
 	}
 }

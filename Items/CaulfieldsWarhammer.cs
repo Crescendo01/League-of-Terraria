@@ -5,12 +5,12 @@ using Terraria.ModLoader;
 
 namespace LeagueOfTerraria.Items
 {
-	public class CloakOfAgility : ModItem
+	public class CaulfieldsWarhammer : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cloak of Agility");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+7% critical strike chance");
+			DisplayName.SetDefault("Caulfield's Warhammer");
+			Tooltip.SetDefault("Equipable only in the League Inventory\n+5% melee and ranged damage\n+10% melee and ranged attack speed");
 		}
 
 		public override void SetDefaults()
@@ -22,7 +22,7 @@ namespace LeagueOfTerraria.Items
 			Item.rare = 5;
 		}
 
-        //Tells the game it is a league item so it can only go in the league inventory
+		//Tells the game it is a league item so it can only go in the league inventory
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
             return modded;
@@ -31,14 +31,16 @@ namespace LeagueOfTerraria.Items
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
             base.UpdateAccessory(player, hideVisual);
-            player.GetCritChance(DamageClass.Melee) += 7;
-            player.GetCritChance(DamageClass.Ranged) += 7;
+            player.GetDamage(DamageClass.Melee) += 0.05f;
+            player.GetDamage(DamageClass.Ranged) += 0.05f;
+			player.GetAttackSpeed(DamageClass.Melee) += 0.1f;
+            player.GetAttackSpeed(DamageClass.Ranged) += 0.1f;
         }
 
         public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(ItemID.DirtBlock, 10);
+			recipe.AddIngredient(Mod, "LongSword", 2);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.Register();
 		}

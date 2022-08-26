@@ -48,9 +48,9 @@ namespace LeagueOfTerraria
         {
             if (canApplyBlackCleaverBuffs)
             {
-                //Adds rage buff and makes it 2 seconds long (1 second = 60 ticks)
+                //Adds rage buff to player and carve debuff to enemy (1 second = 60 ticks)
                 Player.AddBuff(ModContent.BuffType<RageBuff>(), 120);
-                target.AddBuff(ModContent.BuffType<CarveBuff>(), 180);
+                target.AddBuff(ModContent.BuffType<CarveBuff>(), 360);
             }
         }
 
@@ -58,9 +58,9 @@ namespace LeagueOfTerraria
         {
             if (canApplyBlackCleaverBuffs)
             {
-                //Adds rage buff and makes it 2 seconds long (1 second = 60 ticks)
+                //Adds rage buff to player and carve debuff to enemy (1 second = 60 ticks)
                 Player.AddBuff(ModContent.BuffType<RageBuff>(), 120);
-                target.AddBuff(ModContent.BuffType<CarveBuff>(), 180);
+                target.AddBuff(ModContent.BuffType<CarveBuff>(), 360);
                 
             }
         }

@@ -9,8 +9,8 @@ namespace LeagueOfTerraria.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Void Staff"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-			Tooltip.SetDefault("+50% bonus magic and summon damage\n+20 bonus magic and summon armor penetration");
+			DisplayName.SetDefault("Void Staff");
+			Tooltip.SetDefault("Equipable only in the League Inventory\n+10% magic and summon damage\n+10 magic and summon armor penetration");
 		}
 
 		public override void SetDefaults()
@@ -22,13 +22,19 @@ namespace LeagueOfTerraria.Items
 			Item.rare = 5;
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
+        //Tells the game it is a league item so it can only go in the league inventory
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            return modded;
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			base.UpdateAccessory(player, hideVisual);
-            player.GetDamage(DamageClass.Magic) += 0.5f;
-			player.GetArmorPenetration(DamageClass.Magic) += 20;
-            player.GetDamage(DamageClass.Summon) += 0.5f;
-            player.GetArmorPenetration(DamageClass.Summon) += 20;
+            player.GetDamage(DamageClass.Magic) += 0.1f;
+			player.GetArmorPenetration(DamageClass.Magic) += 10;
+            player.GetDamage(DamageClass.Summon) += 0.1f;
+            player.GetArmorPenetration(DamageClass.Summon) += 10;
         }
 
         public override void AddRecipes()

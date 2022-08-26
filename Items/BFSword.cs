@@ -9,8 +9,8 @@ namespace LeagueOfTerraria.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("B.F. Sword"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-			Tooltip.SetDefault("+15% melee and ranged damage");
+			DisplayName.SetDefault("B.F. Sword");
+			Tooltip.SetDefault("Equipable only in the League Inventory\n+6% melee and ranged damage");
 		}
 
 		public override void SetDefaults()
@@ -22,11 +22,17 @@ namespace LeagueOfTerraria.Items
             Item.rare = 5;
         }
 
+        //Tells the game it is a league item so it can only go in the league inventory
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            return modded;
+        }
+
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             base.UpdateAccessory(player, hideVisual);
-            player.GetDamage(DamageClass.Melee) += 0.15f;
-            player.GetDamage(DamageClass.Ranged) += 0.15f;
+            player.GetDamage(DamageClass.Melee) += 0.06f;
+            player.GetDamage(DamageClass.Ranged) += 0.06f;
         }
 
         public override void AddRecipes()

@@ -10,8 +10,8 @@ namespace LeagueOfTerraria.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Carve (Black Cleaver)"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-			Description.SetDefault("-15% defense reduction");
+			DisplayName.SetDefault("Carve (Black Cleaver)");
+			Description.SetDefault("-7% defense reduction");
 		}
 
 		public override void Update(NPC target, ref int buffIndex)
