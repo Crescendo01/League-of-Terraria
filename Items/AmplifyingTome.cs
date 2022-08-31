@@ -10,7 +10,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Amplifying Tome");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+2% magic and summon damage");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+2% magic and summon damage");
 		}
 
 		public override void SetDefaults()

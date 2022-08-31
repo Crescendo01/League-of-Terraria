@@ -10,7 +10,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Infinity Edge");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+13% melee and ranged damage\n+10% melee and ranged critical strike chance\nUNIQUE - PERFECTION: Gain 35% bonus critical strike damage if you have at least 30% bonus critical strike chance.");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+13% melee and ranged damage\n+10% melee and ranged critical strike chance\nUNIQUE - PERFECTION: Gain 35% bonus critical strike damage if you have at least 30% bonus critical strike chance");
 		}
 
 		public override void SetDefaults()

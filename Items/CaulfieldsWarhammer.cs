@@ -10,7 +10,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Caulfield's Warhammer");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+5% melee and ranged damage\n+10% melee and ranged attack speed");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+5% melee and ranged damage\n+10% melee and ranged attack speed");
 		}
 
 		public override void SetDefaults()

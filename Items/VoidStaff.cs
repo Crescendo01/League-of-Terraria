@@ -10,7 +10,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Void Staff");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+10% magic and summon damage\n+10 magic and summon armor penetration");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+10% magic and summon damage\n+10 magic and summon armor penetration");
 		}
 
 		public override void SetDefaults()

@@ -1,16 +1,16 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
+using Terraria.ModLoader; 
 
 namespace LeagueOfTerraria.Items
 {
-	public class RabadonsDeathcap : ModItem
+	public class LastWhisper : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Rabadon's Deathcap");
-			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+25% magic and summon damage\nUNIQUE - MAGICAL OPUS: Increase your magic and summon damage by 35%");
+			DisplayName.SetDefault("Last Whisper");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+20% melee and ranged damage\n+18 melee and ranged armor penetration");
 		}
 
 		public override void SetDefaults()
@@ -24,23 +24,23 @@ namespace LeagueOfTerraria.Items
 
         //Tells the game it is a league item so it can only go in the league inventory
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
-        {
-            return modded;
-        }
+		{
+			return modded;
+		}
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
+		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			base.UpdateAccessory(player, hideVisual);
-			player.GetDamage(DamageClass.Magic) += 0.25f;
-            player.GetDamage(DamageClass.Magic) += 0.35f;
-            player.GetDamage(DamageClass.Summon) += 0.25f;
-            player.GetDamage(DamageClass.Summon) += 0.35f;
+			player.GetDamage(DamageClass.Melee) += 0.20f;
+			player.GetArmorPenetration(DamageClass.Melee) += 18;
+            player.GetDamage(DamageClass.Ranged) += 0.20f;
+            player.GetArmorPenetration(DamageClass.Ranged) += 18;
         }
 
         public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(Mod, "NeedlesslyLargeRod", 2);
+			recipe.AddIngredient(Mod, "LongSword", 2);
             recipe.AddTile(TileID.Anvils);
 			recipe.Register();
 		}

@@ -10,7 +10,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Blighting Jewel");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+3% magic and summon damage\n+3 magic and summon armor penetration");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+3% magic and summon damage\n+3 magic and summon armor penetration");
 		}
 
 		public override void SetDefaults()

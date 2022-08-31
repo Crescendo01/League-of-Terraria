@@ -11,7 +11,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Black Cleaver");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+7% melee and ranged damage\n+30% melee and ranged attack speed\n+35 health\nUNIQUE - CARVE: Dealing damage applies Carve for 6 seconds. Carve inflicts 7% defense reduction on the enemy.\nUNIQUE - RAGE: Dealing damage gives +5% bonus movement speed for 2 seconds.");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+7% melee and ranged damage\n+30% melee and ranged attack speed\n+35 health\nUNIQUE - CARVE: Dealing damage applies Carve for 6 seconds. Carve inflicts 7% defense reduction on the enemy\nUNIQUE - RAGE: Dealing damage gives +5% bonus movement speed for 2 seconds");
 		}
 
 		public override void SetDefaults()

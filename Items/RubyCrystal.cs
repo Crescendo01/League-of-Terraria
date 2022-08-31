@@ -10,7 +10,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Ruby Crystal");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+15 health");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+15 health");
 		}
 
 		public override void SetDefaults()

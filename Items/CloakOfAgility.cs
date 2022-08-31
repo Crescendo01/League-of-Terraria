@@ -10,7 +10,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cloak of Agility");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+7% critical strike chance");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+7% critical strike chance");
 		}
 
 		public override void SetDefaults()

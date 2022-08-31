@@ -10,7 +10,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("B.F. Sword");
-			Tooltip.SetDefault("Equipable only in the League Inventory\n+6% melee and ranged damage");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+6% melee and ranged damage");
 		}
 
 		public override void SetDefaults()

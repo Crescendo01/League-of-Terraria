@@ -5,12 +5,12 @@ using Terraria.ModLoader;
 
 namespace LeagueOfTerraria.Items
 {
-	public class RabadonsDeathcap : ModItem
+	public class Dagger : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Rabadon's Deathcap");
-			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+25% magic and summon damage\nUNIQUE - MAGICAL OPUS: Increase your magic and summon damage by 35%");
+			DisplayName.SetDefault("Dagger");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+12% melee and ranged attack speed");
 		}
 
 		public override void SetDefaults()
@@ -31,18 +31,16 @@ namespace LeagueOfTerraria.Items
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			base.UpdateAccessory(player, hideVisual);
-			player.GetDamage(DamageClass.Magic) += 0.25f;
-            player.GetDamage(DamageClass.Magic) += 0.35f;
-            player.GetDamage(DamageClass.Summon) += 0.25f;
-            player.GetDamage(DamageClass.Summon) += 0.35f;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.12f;
+            player.GetAttackSpeed(DamageClass.Ranged) += 0.12f;
         }
 
         public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(Mod, "NeedlesslyLargeRod", 2);
-            recipe.AddTile(TileID.Anvils);
-			recipe.Register();
+            recipe.AddIngredient(ItemID.DirtBlock, 10);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
 		}
 	}
 }

@@ -5,12 +5,12 @@ using Terraria.ModLoader;
 
 namespace LeagueOfTerraria.Items
 {
-	public class RabadonsDeathcap : ModItem
+	public class VampiricScepter : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Rabadon's Deathcap");
-			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+25% magic and summon damage\nUNIQUE - MAGICAL OPUS: Increase your magic and summon damage by 35%");
+			DisplayName.SetDefault("Vampiric Scepter");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+15% melee and ranged damage\n+3% life steal");
 		}
 
 		public override void SetDefaults()
@@ -30,18 +30,17 @@ namespace LeagueOfTerraria.Items
 
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			base.UpdateAccessory(player, hideVisual);
-			player.GetDamage(DamageClass.Magic) += 0.25f;
-            player.GetDamage(DamageClass.Magic) += 0.35f;
-            player.GetDamage(DamageClass.Summon) += 0.25f;
-            player.GetDamage(DamageClass.Summon) += 0.35f;
+            base.UpdateAccessory(player, hideVisual);
+            player.GetDamage(DamageClass.Melee) += 0.15f;
+            player.GetDamage(DamageClass.Ranged) += 0.15f;
+			player.GetModPlayer<LeagueOfTerrariaPlayer>().vampScepterEquipped = true;
         }
 
         public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(Mod, "NeedlesslyLargeRod", 2);
-            recipe.AddTile(TileID.Anvils);
+			recipe.AddIngredient(Mod, "LongSword", 1);
+			recipe.AddTile(TileID.WorkBenches);
 			recipe.Register();
 		}
 	}
