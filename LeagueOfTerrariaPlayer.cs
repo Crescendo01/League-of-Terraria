@@ -30,22 +30,31 @@ namespace LeagueOfTerraria
         //Flag for IE crit calculation
         public bool perfection;
 
+        //Flag for Nashor's Tooth ap calculation
+        public bool nashorsEquipped;
+
         //Flag for Serylda's slow debuff
         public bool bitterCold;
         
         //Flag for Vampiric Scepter being equipped
         public bool vampScepterEquipped;
 
+        //Flag for Wit's End being equipped
+        public bool witsEndEquipped;
+
         //Int for total life steal calculations
         public float healingAmount;
 
-        //Flag set to false so they reset
+        //Flags set to false so they reset
         public override void ResetEffects()
         {
             healingAmount = 0;
+            borkEquipped = false;
             siphonCooldown = false;
             bitterCold = false;
+            nashorsEquipped = false;
             perfection = false;
+            witsEndEquipped = false;
             canApplyBlackCleaverBuffs = false;
         }
 
@@ -77,6 +86,12 @@ namespace LeagueOfTerraria
             {
                 target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().IncrementCarve();
             }
+            
+            if (nashorsEquipped)
+            {
+                damage += 15 + (int)(Player.GetDamage(DamageClass.Magic).Flat * 0.2);
+                damage += 15 + (int)(Player.GetDamage(DamageClass.Summon).Flat * 0.2);
+            }
 
             if (perfection && crit)
             {
@@ -104,6 +119,12 @@ namespace LeagueOfTerraria
             if (canApplyBlackCleaverBuffs)
             {
                 target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().IncrementCarve();
+            }
+
+            if (nashorsEquipped)
+            {
+                damage += 15 + (int)(Player.GetDamage(DamageClass.Magic).Flat * 0.2);
+                damage += 15 + (int)(Player.GetDamage(DamageClass.Summon).Flat * 0.2);
             }
 
             if (perfection && crit)
@@ -163,10 +184,18 @@ namespace LeagueOfTerraria
                 rageStacks = target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().carveCountBuffer;
             }
 
+            if (witsEndEquipped)
+            {
+                Player.AddBuff(ModContent.BuffType<FrayBuff>(), 120);
+            }
+
             //Life steal calculation
-            healingAmount = (int)(damage*(healingAmount)/2);
-            Player.statLife += (int)healingAmount;
-            Player.HealEffect((int)healingAmount, true);
+            if (healingAmount > 0)
+            {
+                healingAmount = (int)(damage*(healingAmount)/2);
+                Player.statLife += (int)healingAmount;
+                Player.HealEffect((int)healingAmount, true);
+            }
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
@@ -219,10 +248,18 @@ namespace LeagueOfTerraria
                 rageStacks = target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().carveCountBuffer;
             }
 
+            if (witsEndEquipped)
+            {
+                Player.AddBuff(ModContent.BuffType<FrayBuff>(), 120);
+            }
+
             //Life steal calculation
-            healingAmount = (int)(damage*(healingAmount)/2);
-            Player.statLife += (int)healingAmount;
-            Player.HealEffect((int)healingAmount, true);
+            if (healingAmount > 0)
+            {
+                healingAmount = (int)(damage*(healingAmount)/2);
+                Player.statLife += (int)healingAmount;
+                Player.HealEffect((int)healingAmount, true);
+            }
         }
     }
 }

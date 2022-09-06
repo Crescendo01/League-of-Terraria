@@ -1,19 +1,18 @@
-using IL.Terraria.GameContent;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace LeagueOfTerraria.Items
 {
-	public class Pickaxe : ModItem
-	{
+	public class NullMagicMantle : ModItem
+	{ 
+
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pickaxe");
-			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+4% melee and ranged damage");
-		}
+			DisplayName.SetDefault("Null Magic Mantle");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+8 defense");
+        }
 
 		public override void SetDefaults()
 		{
@@ -33,15 +32,14 @@ namespace LeagueOfTerraria.Items
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
             base.UpdateAccessory(player, hideVisual);
-            player.GetDamage(DamageClass.Melee) += 0.04f;
-            player.GetDamage(DamageClass.Ranged) += 0.04f;
+			player.statDefense += 8;
         }
 
-		public override void AddRecipes()
+        public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(ItemID.DirtBlock, 10);
-			recipe.AddTile(TileID.WorkBenches);
+            recipe.AddIngredient(ItemID.DirtBlock, 10);
+            recipe.AddTile(TileID.WorkBenches);
 			recipe.Register();
 		}
 	}

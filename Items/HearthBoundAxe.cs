@@ -1,19 +1,18 @@
-using IL.Terraria.GameContent;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace LeagueOfTerraria.Items
 {
-	public class Pickaxe : ModItem
-	{
+	public class HearthboundAxe : ModItem
+	{ 
+
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pickaxe");
-			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+4% melee and ranged damage");
-		}
+			DisplayName.SetDefault("Hearthbound Axe");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+7% melee and ranged damage\n");
+        }
 
 		public override void SetDefaults()
 		{
@@ -32,16 +31,15 @@ namespace LeagueOfTerraria.Items
 
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-            base.UpdateAccessory(player, hideVisual);
-            player.GetDamage(DamageClass.Melee) += 0.04f;
-            player.GetDamage(DamageClass.Ranged) += 0.04f;
+            
         }
 
-		public override void AddRecipes()
+        public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(ItemID.DirtBlock, 10);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddIngredient(Mod, "Dagger", 1);
+            recipe.AddIngredient(Mod, "LongSword", 1);
+            recipe.AddTile(TileID.WorkBenches);
 			recipe.Register();
 		}
 	}

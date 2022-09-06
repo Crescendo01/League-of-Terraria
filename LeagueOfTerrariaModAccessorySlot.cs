@@ -21,7 +21,7 @@ namespace LeagueOfTerraria
         public override string FunctionalTexture => "Terraria/Images/Inventory_Back12";
         public override Vector2? CustomLocation => new Vector2(Main.screenWidth * 0.64f, Main.screenHeight * 0.88f);
         
-        public static string[] items = { "Amplifying Tome", "B.F. Sword", "Black Cleaver", "Blasting Wand", "Blighting Jewel", "Cloak of Agility", "Infinity Edge", "Long Sword", "Needlessly Large Rod", "Pickaxe", "Rabadon's Deathcap", "Void Staff", "Ruby Crystal", "Kindlegem", "Serylda's Grudge", "Last Whisper", "Dagger", "Recurve Bow", "Vampiric Scepter", "Blade of the Ruined King" };
+        public static string[] items = { "Amplifying Tome", "B.F. Sword", "Black Cleaver", "Blasting Wand", "Blighting Jewel", "Cloak of Agility", "Infinity Edge", "Long Sword", "Needlessly Large Rod", "Pickaxe", "Rabadon's Deathcap", "Void Staff", "Ruby Crystal", "Kindlegem", "Serylda's Grudge", "Last Whisper", "Dagger", "Recurve Bow", "Vampiric Scepter", "Blade of the Ruined King", "Nashor's Tooth", "Wit's End", "Null Magic Mantle", "Hearthbound Axe" };
         //Checks if the player is trying to equip a league item, returning true if they are
         public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
         {
