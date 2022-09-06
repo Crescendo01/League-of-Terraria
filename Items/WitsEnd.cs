@@ -11,7 +11,7 @@ namespace LeagueOfTerraria.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wit's End");
-			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+20% melee and ranged damage\n+40% melee and ranged attack speed\n+20 defense\nUNIQUE - FRAY: Melee and ranged attacks deal 10 bonus damage on-hit and grant you 20 bonus movement speed for 2 seconds.");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+20% melee and ranged damage\n+40% melee and ranged attack speed\n+20 defense\nUNIQUE - FRAY: Melee and ranged attacks deal 10 bonus damage on-hit and grant you +20% bonus movement speed for 2 seconds.");
         }
 
 		public override void SetDefaults()
@@ -40,6 +40,7 @@ namespace LeagueOfTerraria.Items
             player.GetAttackSpeed(DamageClass.Ranged) += 0.4f;
 			player.statDefense += 20;
             player.GetModPlayer<LeagueOfTerrariaPlayer>().witsEndEquipped = true;
+            player.GetModPlayer<LeagueOfTerrariaPlayer>().legendaryItems++;
         }
 
         public override void AddRecipes()

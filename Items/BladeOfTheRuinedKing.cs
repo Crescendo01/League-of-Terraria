@@ -37,6 +37,7 @@ namespace LeagueOfTerraria.Items
 			player.GetAttackSpeed(DamageClass.Melee) += 0.25f;
             player.GetAttackSpeed(DamageClass.Ranged) += 0.25f;
 			player.GetModPlayer<LeagueOfTerrariaPlayer>().borkEquipped = true;
+            player.GetModPlayer<LeagueOfTerrariaPlayer>().legendaryItems++;
         }
 
         public override void AddRecipes()

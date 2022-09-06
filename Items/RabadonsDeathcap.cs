@@ -35,6 +35,7 @@ namespace LeagueOfTerraria.Items
             player.GetDamage(DamageClass.Magic) += 0.35f;
             player.GetDamage(DamageClass.Summon) += 0.25f;
             player.GetDamage(DamageClass.Summon) += 0.35f;
+            player.GetModPlayer<LeagueOfTerrariaPlayer>().legendaryItems++;
         }
 
         public override void AddRecipes()

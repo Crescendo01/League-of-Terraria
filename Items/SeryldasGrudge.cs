@@ -37,7 +37,10 @@ namespace LeagueOfTerraria.Items
             player.GetArmorPenetration(DamageClass.Ranged) += 30;
             player.GetAttackSpeed(DamageClass.Melee) += 0.2f;
             player.GetAttackSpeed(DamageClass.Ranged) += 0.2f;
+            player.GetAttackSpeed(DamageClass.Magic) += 0.2f;
+            player.GetAttackSpeed(DamageClass.Summon) += 0.2f;
             player.GetModPlayer<LeagueOfTerrariaPlayer>().bitterCold = true;
+            player.GetModPlayer<LeagueOfTerrariaPlayer>().legendaryItems++;
         }
 
         public override void AddRecipes()

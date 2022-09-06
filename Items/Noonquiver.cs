@@ -5,13 +5,13 @@ using Terraria.ModLoader;
 
 namespace LeagueOfTerraria.Items
 {
-	public class HearthboundAxe : ModItem
-	{ 
+	public class Noonquiver : ModItem
+	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Hearthbound Axe");
-			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+7% melee and ranged damage\n+15% melee and ranged attack speed\nUNIQUE - NIMBLE: Melee and ranged attacks grant (Melee 20% / Ranged 10%) bonus movement speed for 2 seconds.");
-        }
+			DisplayName.SetDefault("Noonquiver");
+			Tooltip.SetDefault("Can only be equipped in the League Inventory\n+20% melee and ranged damage\n+15% melee and ranged attack speed\nUNIQUE - PRECISION: Melee and ranged attacks deal 20 bonus damage on-hit.");
+		}
 
 		public override void SetDefaults()
 		{
@@ -30,20 +30,22 @@ namespace LeagueOfTerraria.Items
 
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetDamage(DamageClass.Melee) += 0.07f;
-            player.GetDamage(DamageClass.Ranged) += 0.07f;
+			base.UpdateAccessory(player, hideVisual);
+            player.GetDamage(DamageClass.Melee) += 0.2f;
+            player.GetDamage(DamageClass.Ranged) += 0.2f;
+            player.GetDamage(DamageClass.Melee).Flat += 20;
+            player.GetDamage(DamageClass.Ranged).Flat += 20;
             player.GetAttackSpeed(DamageClass.Melee) += 0.15f;
             player.GetAttackSpeed(DamageClass.Ranged) += 0.15f;
-            player.GetModPlayer<LeagueOfTerrariaPlayer>().hearthboundEquipped = true;
         }
 
         public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(Mod, "Dagger", 1);
-            recipe.AddIngredient(Mod, "LongSword", 1);
+            recipe.AddIngredient(Mod, "LongSword", 2);
+            recipe.AddIngredient(Mod, "Dagger", 1);
             recipe.AddTile(TileID.WorkBenches);
-			recipe.Register();
+            recipe.Register();
 		}
 	}
 }

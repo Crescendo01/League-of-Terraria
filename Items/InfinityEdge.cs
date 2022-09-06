@@ -39,6 +39,7 @@ namespace LeagueOfTerraria.Items
 			{
                 player.GetModPlayer<LeagueOfTerrariaPlayer>().perfection = true;
             }
+            player.GetModPlayer<LeagueOfTerrariaPlayer>().legendaryItems++;
         }
 
         public override void AddRecipes()

@@ -12,6 +12,7 @@ using LeagueOfTerraria.NPCS;
 using LeagueOfTerraria.Buffs;
 using System.Security.Cryptography.X509Certificates;
 using Terraria.DataStructures;
+using rail;
 
 namespace LeagueOfTerraria
 {
@@ -27,8 +28,16 @@ namespace LeagueOfTerraria
         //variable for rage stacking
         public int rageStacks;
 
+        //Flag for hearthbound axe being equipped
+        public bool hearthboundEquipped;
+
         //Flag for IE crit calculation
         public bool perfection;
+
+        //Flag for kraken slayer being equipped
+        public bool krakenSlayerEquipped;
+        //flag for max kraken stacks
+        public bool maxKrakenStacks;
 
         //Flag for Nashor's Tooth ap calculation
         public bool nashorsEquipped;
@@ -45,13 +54,20 @@ namespace LeagueOfTerraria
         //Int for total life steal calculations
         public float healingAmount;
 
+        //Int for the amount of legendary items (used for the mythic passive calculations)
+        public int legendaryItems;
+
         //Flags set to false so they reset
         public override void ResetEffects()
         {
+            legendaryItems = 0;
             healingAmount = 0;
             borkEquipped = false;
             siphonCooldown = false;
             bitterCold = false;
+            krakenSlayerEquipped = false;
+            maxKrakenStacks = false;
+            hearthboundEquipped = false;
             nashorsEquipped = false;
             perfection = false;
             witsEndEquipped = false;
@@ -64,6 +80,15 @@ namespace LeagueOfTerraria
             r = rageStacks * 40f;
         }
         */
+
+        public override void PostUpdate()
+        {
+            if (krakenSlayerEquipped)
+            {
+                Player.GetAttackSpeed(DamageClass.Melee) += legendaryItems * 0.1f;
+                Player.GetAttackSpeed(DamageClass.Ranged) += legendaryItems * 0.1f;
+            }
+        }
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
@@ -87,6 +112,12 @@ namespace LeagueOfTerraria
                 target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().IncrementCarve();
             }
             
+            if (maxKrakenStacks)
+            {
+                damage += 30 + (int)(Player.GetDamage(DamageClass.Melee).Flat * 0.4);
+                Player.ClearBuff(ModContent.BuffType<BringItDown>());
+            }
+
             if (nashorsEquipped)
             {
                 damage += 15 + (int)(Player.GetDamage(DamageClass.Magic).Flat * 0.2);
@@ -120,11 +151,17 @@ namespace LeagueOfTerraria
             {
                 target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().IncrementCarve();
             }
-
+            
             if (nashorsEquipped)
             {
                 damage += 15 + (int)(Player.GetDamage(DamageClass.Magic).Flat * 0.2);
                 damage += 15 + (int)(Player.GetDamage(DamageClass.Summon).Flat * 0.2);
+            }
+
+            if (maxKrakenStacks)
+            {
+                damage += 30 + (int)(Player.GetDamage(DamageClass.Melee).Flat * 0.4);
+                Player.ClearBuff(ModContent.BuffType<BringItDown>());
             }
 
             if (perfection && crit)
@@ -182,6 +219,21 @@ namespace LeagueOfTerraria
                 Player.AddBuff(ModContent.BuffType<RageBuff>(), 120);
                 target.AddBuff(ModContent.BuffType<CarveBuff>(), 360);
                 rageStacks = target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().carveCountBuffer;
+            }
+
+            if (krakenSlayerEquipped)
+            {
+                target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().IncrementKraken();
+                if (target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().krakenStacks == 3)
+                {
+                    Player.AddBuff(ModContent.BuffType<BringItDown>(), 180);
+                    target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().krakenStacks = 0;
+                }
+            }
+
+            if (hearthboundEquipped)
+            {
+                Player.AddBuff(ModContent.BuffType<NimbleBuffMelee>(), 120);
             }
 
             if (witsEndEquipped)
@@ -246,6 +298,21 @@ namespace LeagueOfTerraria
                 Player.AddBuff(ModContent.BuffType<RageBuff>(), 120);
                 target.AddBuff(ModContent.BuffType<CarveBuff>(), 360);
                 rageStacks = target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().carveCountBuffer;
+            }
+
+            if (krakenSlayerEquipped)
+            {
+                target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().IncrementKraken();
+                if (target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().krakenStacks == 3)
+                {
+                    Player.AddBuff(ModContent.BuffType<BringItDown>(), 180);
+                    target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().krakenStacks = 0;
+                }
+            }
+
+            if (hearthboundEquipped)
+            {
+                Player.AddBuff(ModContent.BuffType<NimbleBuffRanged>(), 120);
             }
 
             if (witsEndEquipped)

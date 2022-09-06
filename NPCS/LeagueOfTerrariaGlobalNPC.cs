@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using LeagueOfTerraria.Buffs;
 using System.Security.Cryptography.X509Certificates;
+using LeagueOfTerraria.Items;
 
 namespace LeagueOfTerraria.NPCS
 {
@@ -20,6 +21,9 @@ namespace LeagueOfTerraria.NPCS
         //variables for carve stacks
         public int carveCount;
         public int carveCountBuffer;
+
+        //variable for kraken stacks
+        public int krakenStacks = 1;
 
         //Flag for Serylda's Slow Debuff
         public bool slowDebuff;
@@ -63,6 +67,12 @@ namespace LeagueOfTerraria.NPCS
         {
             if (carveCountBuffer < 6)
                 carveCountBuffer++;
+        }
+
+        public void IncrementKraken()
+        {
+            if (krakenStacks < 3)
+                krakenStacks++;
         }
 
         public override void PostAI(NPC npc)

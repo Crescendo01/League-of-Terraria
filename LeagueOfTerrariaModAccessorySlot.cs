@@ -11,7 +11,7 @@ using Terraria.UI;
 
 namespace LeagueOfTerraria
 {
-    //These slots are out of order lmao. Actual order of slots is commented (order starts from top left of 3x2 rectangle and counts up going left to right)
+    //These slots are out of order lmao. Actual order of slots is commented (order starts from top left of 3x2 rectangle and counts up going left to right, top to bottom)
     //This is the first one tho
     public class LeagueOfTerrariaModAccessorySlot : ModAccessorySlot
     {
@@ -21,7 +21,7 @@ namespace LeagueOfTerraria
         public override string FunctionalTexture => "Terraria/Images/Inventory_Back12";
         public override Vector2? CustomLocation => new Vector2(Main.screenWidth * 0.64f, Main.screenHeight * 0.88f);
         
-        public static string[] items = { "Amplifying Tome", "B.F. Sword", "Black Cleaver", "Blasting Wand", "Blighting Jewel", "Cloak of Agility", "Infinity Edge", "Long Sword", "Needlessly Large Rod", "Pickaxe", "Rabadon's Deathcap", "Void Staff", "Ruby Crystal", "Kindlegem", "Serylda's Grudge", "Last Whisper", "Dagger", "Recurve Bow", "Vampiric Scepter", "Blade of the Ruined King", "Nashor's Tooth", "Wit's End", "Null Magic Mantle", "Hearthbound Axe" };
+        public static string[] items = { "Amplifying Tome", "B.F. Sword", "Black Cleaver", "Blasting Wand", "Blighting Jewel", "Cloak of Agility", "Infinity Edge", "Long Sword", "Needlessly Large Rod", "Pickaxe", "Rabadon's Deathcap", "Void Staff", "Ruby Crystal", "Kindlegem", "Serylda's Grudge", "Last Whisper", "Dagger", "Recurve Bow", "Vampiric Scepter", "Blade of the Ruined King", "Nashor's Tooth", "Wit's End", "Null Magic Mantle", "Hearthbound Axe", "Kraken Slayer", "Noonquiver" };
         //Checks if the player is trying to equip a league item, returning true if they are
         public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
         {

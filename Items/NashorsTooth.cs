@@ -37,6 +37,7 @@ namespace LeagueOfTerraria.Items
             player.GetAttackSpeed(DamageClass.Magic) += 0.5f;
             player.GetAttackSpeed(DamageClass.Summon) += 0.5f;
             player.GetModPlayer<LeagueOfTerrariaPlayer>().nashorsEquipped = true;
+            player.GetModPlayer<LeagueOfTerrariaPlayer>().legendaryItems++;
         }
 
         public override void AddRecipes()

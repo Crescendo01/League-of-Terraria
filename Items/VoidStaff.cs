@@ -35,6 +35,7 @@ namespace LeagueOfTerraria.Items
 			player.GetArmorPenetration(DamageClass.Magic) += 10;
             player.GetDamage(DamageClass.Summon) += 0.1f;
             player.GetArmorPenetration(DamageClass.Summon) += 10;
+			player.GetModPlayer<LeagueOfTerrariaPlayer>().legendaryItems++;
         }
 
         public override void AddRecipes()
