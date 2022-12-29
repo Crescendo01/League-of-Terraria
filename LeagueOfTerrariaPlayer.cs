@@ -39,12 +39,22 @@ namespace LeagueOfTerraria
         //flag for max kraken stacks
         public bool maxKrakenStacks;
 
+        //Flags for lich bane
+        public bool lichBaneEquipped;
+        public bool lichBaneBuffActive;
+        public bool lichBaneCooldown;
+
         //Flag for Nashor's Tooth ap calculation
         public bool nashorsEquipped;
 
         //Flag for Serylda's slow debuff
         public bool bitterCold;
-        
+
+        //Flags for sheen being equipped and its buffs
+        public bool sheenEquipped;
+        public bool sheenBuffActive;
+        public bool sheenCooldown;
+
         //Flag for Vampiric Scepter being equipped
         public bool vampScepterEquipped;
 
@@ -66,10 +76,16 @@ namespace LeagueOfTerraria
             siphonCooldown = false;
             bitterCold = false;
             krakenSlayerEquipped = false;
+            lichBaneEquipped = false;
+            lichBaneBuffActive = false;
+            lichBaneCooldown = false;
             maxKrakenStacks = false;
             hearthboundEquipped = false;
             nashorsEquipped = false;
             perfection = false;
+            sheenBuffActive = false;
+            sheenCooldown = false;
+            sheenEquipped = false;
             witsEndEquipped = false;
             canApplyBlackCleaverBuffs = false;
         }
@@ -111,7 +127,12 @@ namespace LeagueOfTerraria
             {
                 target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().IncrementCarve();
             }
-            
+
+            if (lichBaneBuffActive && lichBaneCooldown == false)
+            {
+                damage += (int)(damage * 0.75) + (int)(Player.GetDamage(DamageClass.Generic).Flat * 0.5);
+            }
+
             if (maxKrakenStacks)
             {
                 damage += 30 + (int)(Player.GetDamage(DamageClass.Melee).Flat * 0.4);
@@ -128,6 +149,12 @@ namespace LeagueOfTerraria
             {
                 damage += (int)(damage*0.35);
             }
+
+            if (sheenBuffActive && sheenCooldown == false)
+            {
+                damage += (int)(damage * 0.5);
+            }
+
         }
 
         public override void ModifyHitNPCWithProj(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -151,7 +178,12 @@ namespace LeagueOfTerraria
             {
                 target.GetGlobalNPC<LeagueOfTerrariaGlobalNPC>().IncrementCarve();
             }
-            
+
+            if (lichBaneBuffActive && lichBaneCooldown == false)
+            {
+                damage += (int)(damage * 0.75) + (int)(Player.GetDamage(DamageClass.Generic).Flat * 0.5);
+            }
+
             if (nashorsEquipped)
             {
                 damage += 15 + (int)(Player.GetDamage(DamageClass.Magic).Flat * 0.2);
@@ -168,11 +200,16 @@ namespace LeagueOfTerraria
             {
                 damage += (int)(damage * 0.35);
             }
+
+            if (sheenBuffActive && sheenCooldown == false)
+            {
+                damage += (int)(damage * 0.5);
+            }
         }
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            //Checks for life steal increases
+            //Checks flags for life steal increases
             if (vampScepterEquipped)
             {
                 healingAmount += 0.03f;
@@ -231,9 +268,33 @@ namespace LeagueOfTerraria
                 }
             }
 
+            if (lichBaneEquipped && !lichBaneBuffActive && !lichBaneCooldown)
+            {
+                Player.AddBuff(ModContent.BuffType<LichBaneActive>(), 600);
+            }
+
+            if (lichBaneBuffActive && lichBaneCooldown == false)
+            {
+                lichBaneBuffActive = false;
+                Player.ClearBuff(ModContent.BuffType<LichBaneActive>());
+                Player.AddBuff(ModContent.BuffType<LichBaneInactive>(), 180);
+            }
+
             if (hearthboundEquipped)
             {
                 Player.AddBuff(ModContent.BuffType<NimbleBuffMelee>(), 120);
+            }
+
+            if (sheenEquipped && !sheenBuffActive && !sheenCooldown)
+            {
+                Player.AddBuff(ModContent.BuffType<SheenActive>(), 600);
+            }
+
+            if (sheenBuffActive && sheenCooldown == false)
+            {
+                sheenBuffActive = false;
+                Player.ClearBuff(ModContent.BuffType<SheenActive>());
+                Player.AddBuff(ModContent.BuffType<SheenInactive>(), 180);
             }
 
             if (witsEndEquipped)
@@ -310,9 +371,33 @@ namespace LeagueOfTerraria
                 }
             }
 
+            if (lichBaneEquipped && !lichBaneBuffActive && !lichBaneCooldown)
+            {
+                Player.AddBuff(ModContent.BuffType<LichBaneActive>(), 600);
+            }
+
+            if (lichBaneBuffActive && lichBaneCooldown == false)
+            {
+                lichBaneBuffActive = false;
+                Player.ClearBuff(ModContent.BuffType<LichBaneActive>());
+                Player.AddBuff(ModContent.BuffType<LichBaneInactive>(), 180);
+            }
+
             if (hearthboundEquipped)
             {
                 Player.AddBuff(ModContent.BuffType<NimbleBuffRanged>(), 120);
+            }
+
+            if (sheenEquipped && !sheenBuffActive && !sheenCooldown)
+            {
+                Player.AddBuff(ModContent.BuffType<SheenActive>(), 600);
+            }
+
+            if (sheenBuffActive && sheenCooldown == false)
+            {
+                sheenBuffActive = false;
+                Player.ClearBuff(ModContent.BuffType<SheenActive>());
+                Player.AddBuff(ModContent.BuffType<SheenInactive>(), 180);
             }
 
             if (witsEndEquipped)
